@@ -1,10 +1,24 @@
 import * as servly from "./index"
 
 describe("servly", () => {
-	const endpoint = servly.Endpoint.create(async request =>
-		request.url == "error" ? { status: 400, type: "wrong url" } :
-		{ url: request.url || undefined, message: !request.header.authorization ? "Nothing to hide." : `Hiding: ${ request.header.authorization }` }
-	)
+	const endpoint = servly.Endpoint.create(async request => {
+		let result: string | any
+		if (request.url == "error")
+			result = { status: 400, type: "wrong url" }
+		else if (request.header.accept)
+			switch (request.header.accept) {
+				default:
+				case "text/html; charset=utf-8":
+					result = "<!DocType HTML><html></html>"
+					break
+				case "application/jwt; charset=utf-8":
+					result = "aaaaa.bbbbb.ccccc"
+					break
+			}
+		else
+			result = { url: request.url || undefined, message: !request.header.authorization ? "Nothing to hide." : `Hiding: ${ request.header.authorization }` }
+		return result
+	})
 	it("url", async () => expect(await endpoint({
 		url: "http://example.com/"
 	})).toEqual({
@@ -36,21 +50,6 @@ describe("servly", () => {
 			type: "wrong url",
 		},
 	}))
-})
-describe("servly text", () => {
-	const endpoint = servly.Endpoint.create(async request => {
-		let result: string
-		switch (request.header.accept) {
-			default:
-			case "text/html; charset=utf-8":
-				result = "<!DocType HTML><html></html>"
-				break
-			case "application/jwt; charset=utf-8":
-				result = "aaaaa.bbbbb.ccccc"
-				break
-		}
-		return result
-	})
 	it("html", async () => expect(await endpoint({ header: { accept: "text/html; charset=utf-8" } })).toEqual({
 		status: 200,
 		header: { contentType: "text/html; charset=utf-8" },
