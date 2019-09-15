@@ -6,7 +6,7 @@ describe("servly", () => {
 		if (request.url == "error")
 			result = { status: 400, type: "wrong url" }
 		else if (request.header.accept)
-			switch (request.header.accept) {
+			switch (request.header.accept[0]) {
 				default:
 				case "text/html; charset=utf-8":
 					result = "<!DocType HTML><html></html>"
@@ -50,12 +50,12 @@ describe("servly", () => {
 			type: "wrong url",
 		},
 	}))
-	it("html", async () => expect(await endpoint({ header: { accept: "text/html; charset=utf-8" } })).toEqual({
+	it("html", async () => expect(await endpoint({ header: { accept: ["text/html; charset=utf-8"] } })).toEqual({
 		status: 200,
 		header: { contentType: "text/html; charset=utf-8" },
 		body: "<!DocType HTML><html></html>",
 	}))
-	it("jwt", async () => expect(await endpoint({ header: { accept: "application/jwt; charset=utf-8" } })).toEqual({
+	it("jwt", async () => expect(await endpoint({ header: { accept: ["application/jwt; charset=utf-8"] } })).toEqual({
 		status: 200,
 		header: { contentType: "application/jwt; charset=utf-8" },
 		body: "aaaaa.bbbbb.ccccc",
