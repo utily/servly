@@ -1,114 +1,118 @@
 export interface Header {
-	readonly aIM?: string | string[]
-	readonly accept?: string | string[]
-	readonly acceptCharset?: string | string[]
-	readonly acceptDatetime?: string | string[]
-	readonly acceptEncoding?: string | string[]
-	readonly acceptLanguage?: string | string[]
-	readonly accessControlRequestMethod?: string | string[]
-	readonly accessControlRequestHeaders?: string | string[]
-	readonly authorization?: string | string[]
-	readonly cacheControl?: string | string[]
-	readonly connection?: string | string[]
-	readonly contentLength?: string | string[]
-	readonly contentMD5?: string | string[]
+	readonly aIM?: string
+	readonly accept?: string[]
+	readonly acceptCharset?: string[]
+	readonly acceptDatetime?: string
+	readonly acceptEncoding?: string[]
+	readonly acceptLanguage?: string[]
+	readonly accessControlRequestMethod?: string
+	readonly accessControlRequestHeaders?: string
+	readonly authorization?: string
+	readonly cacheControl?: string
+	readonly connection?: string
+	readonly contentLength?: string
+	readonly contentMD5?: string
 	readonly contentType?: string
-	readonly cookie?: string | string[]
-	readonly date?: string | string[]
-	readonly expect?: string | string[]
-	readonly forwarded?: string | string[]
-	readonly from?: string | string[]
-	readonly host?: string | string[]
-	readonly http2Settings?: string | string[]
-	readonly ifMatch?: string | string[]
-	readonly ifModifiedSince?: string | string[]
-	readonly ifNoneMatch?: string | string[]
-	readonly ifRange?: string | string[]
-	readonly ifUnmodifiedSince?: string | string[]
-	readonly maxForwards?: string | string[]
-	readonly origin?: string | string[]
-	readonly pragma?: string | string[]
-	readonly proxyAuthorization?: string | string[]
-	readonly range?: string | string[]
-	readonly referer?: string | string[]
-	readonly te?: string | string[]
-	readonly trailer?: string | string[]
-	readonly transferEncoding?: string | string[]
-	readonly userAgent?: string | string[]
-	readonly upgrade?: string | string[]
-	readonly via?: string | string[]
-	readonly warning?: string | string[]
-	readonly upgradeInsecureRequests?: string | string[]
-	readonly xRequestedWith?: string | string[]
-	readonly dnt?: string | string[]
-	readonly xForwardedFor?: string | string[]
-	readonly xForwardedHost?: string | string[]
-	readonly xForwardedProto?: string | string[]
-	readonly frontEndHttps?: string | string[]
-	readonly xHttpMethodOverride?: string | string[]
-	readonly xAttDeviceId?: string | string[]
-	readonly xWapProfile?: string | string[]
-	readonly proxyConnection?: string | string[]
-	readonly xCsrfToken?: string | string[]
-	readonly xCorrelationID?: string | string[]
-	readonly saveData	?: string | string[]
+	readonly cookie?: string
+	readonly date?: string
+	readonly expect?: string
+	readonly forwarded?: string
+	readonly from?: string
+	readonly host?: string
+	readonly http2Settings?: string
+	readonly ifMatch?: string[]
+	readonly ifModifiedSince?: string
+	readonly ifNoneMatch?: string[]
+	readonly ifRange?: string
+	readonly ifUnmodifiedSince?: string
+	readonly maxForwards?: string
+	readonly origin?: string
+	readonly pragma?: string
+	readonly proxyAuthorization?: string
+	readonly range?: string
+	readonly referer?: string
+	readonly te?: string[]
+	readonly trailer?: string
+	readonly transferEncoding?: string
+	readonly userAgent?: string
+	readonly upgrade?: string[]
+	readonly via?: string[]
+	readonly warning?: string
+	readonly upgradeInsecureRequests?: string
+	readonly xRequestedWith?: string
+	readonly dnt?: string
+	readonly xForwardedFor?: string
+	readonly xForwardedHost?: string
+	readonly xForwardedProto?: string
+	readonly frontEndHttps?: string
+	readonly xHttpMethodOverride?: string
+	readonly xAttDeviceId?: string
+	readonly xWapProfile?: string
+	readonly proxyConnection?: string
+	readonly xCsrfToken?: string
+	readonly xCorrelationID?: string
+	readonly saveData	?: string
 }
-class HeaderDefault {
-	get aIm(): undefined | string | string[] { return this.get("A-IM") }
-	get accept(): undefined | string | string[] { return this.get("Accept") }
-	get acceptCharset(): undefined | string | string[] { return this.get("Accept-Charset") }
-	get acceptDatetime(): undefined | string | string[] { return this.get("Accept-Datetime") }
-	get acceptEncoding(): undefined | string | string[] { return this.get("Accept-Encoding") }
-	get acceptLanguage(): undefined | string | string[] { return this.get("Accept-Language") }
-	get accessControlRequestMethod(): undefined | string | string[] { return this.get("Access-Control-Request-Method") }
-	get accessControlRequestHeaders(): undefined | string | string[] { return this.get("Access-Control-Request-Headers") }
-	get authorization(): undefined | string | string[] { return this.get("Authorization") }
-	get cacheControl(): undefined | string | string[] { return this.get("Cache-Control") }
-	get connection(): undefined | string | string[] { return this.get("Connection") }
-	get contentLength(): undefined | string | string[] { return this.get("Content-Length") }
-	get contentMd5(): undefined | string | string[] { return this.get("Content-MD5") }
-	get contentType(): undefined | string { return this.get("Content-Type") as string }
-	get cookie(): undefined | string | string[] { return this.get("Cookie") }
-	get date(): undefined | string | string[] { return this.get("Date") }
-	get expect(): undefined | string | string[] { return this.get("Expect") }
-	get forwarded(): undefined | string | string[] { return this.get("Forwarded") }
-	get from(): undefined | string | string[] { return this.get("From") }
-	get host(): undefined | string | string[] { return this.get("Host") }
-	get http2Settings(): undefined | string | string[] { return this.get("HTTP2-Settings") }
-	get ifMatch(): undefined | string | string[] { return this.get("If-Match") }
-	get ifModifiedSince(): undefined | string | string[] { return this.get("If-Modified-Since") }
-	get ifNoneMatch(): undefined | string | string[] { return this.get("If-None-Match") }
-	get ifRange(): undefined | string | string[] { return this.get("If-Range") }
-	get ifUnmodifiedSince(): undefined | string | string[] { return this.get("If-Unmodified-Since") }
-	get maxForwards(): undefined | string | string[] { return this.get("Max-Forwards") }
-	get origin(): undefined | string | string[] { return this.get("Origin") }
-	get pragma(): undefined | string | string[] { return this.get("Pragma") }
-	get proxyAuthorization(): undefined | string | string[] { return this.get("Proxy-Authorization") }
-	get range(): undefined | string | string[] { return this.get("Range") }
-	get referer(): undefined | string | string[] { return this.get("Referer") }
-	get te(): undefined | string | string[] { return this.get("TE") }
-	get trailer(): undefined | string | string[] { return this.get("Trailer") }
-	get transferEncoding(): undefined | string | string[] { return this.get("Transfer-Encoding") }
-	get userAgent(): undefined | string | string[] { return this.get("User-Agent") }
-	get upgrade(): undefined | string | string[] { return this.get("Upgrade") }
-	get via(): undefined | string | string[] { return this.get("Via") }
-	get warning(): undefined | string | string[] { return this.get("Warning") }
-	get upgradeInsecureRequests(): undefined | string | string[] { return this.get("Upgrade-Insecure-Requests") }
-	get xRequestedWith(): undefined | string | string[] { return this.get("X-Requested-With") }
-	get dnt(): undefined | string | string[] { return this.get("DNT") }
-	get xForwardedFor(): undefined | string | string[] { return this.get("X-Forwarded-For") }
-	get xForwardedHost(): undefined | string | string[] { return this.get("X-Forwarded-Host") }
-	get xForwardedProto(): undefined | string | string[] { return this.get("X-Forwarded-Proto") }
-	get frontEndHttps(): undefined | string | string[] { return this.get("Front-End-Https") }
-	get xHttpMethodOverride(): undefined | string | string[] { return this.get("X-Http-Method-Override") }
-	get xAttDeviceId(): undefined | string | string[] { return this.get("X-ATT-DeviceId") }
-	get xWapProfile(): undefined | string | string[] { return this.get("X-Wap-Profile") }
-	get proxyConnection(): undefined | string | string[] { return this.get("Proxy-Connection") }
-	get xCsrfToken(): undefined | string | string[] { return this.get("X-Csrf-Token") }
-	get xCorrelationId(): undefined | string | string[] { return this.get("X-Correlation-ID") }
-	get saveData(): undefined |  string | string[] { return this.get("Save-Data") }
+class HeaderDefault implements Header {
+	get aIm() { return this.get("A-IM") }
+	get accept() { return this.getAll("Accept") }
+	get acceptCharset() { return this.getAll("Accept-Charset") }
+	get acceptDatetime() { return this.get("Accept-Datetime") }
+	get acceptEncoding() { return this.getAll("Accept-Encoding") }
+	get acceptLanguage() { return this.getAll("Accept-Language") }
+	get accessControlRequestMethod() { return this.get("Access-Control-Request-Method") }
+	get accessControlRequestHeaders() { return this.get("Access-Control-Request-Headers") }
+	get authorization() { return this.get("Authorization")}
+	get cacheControl() { return this.get("Cache-Control") }
+	get connection() { return this.get("Connection") }
+	get contentLength() { return this.get("Content-Length") }
+	get contentMd5() { return this.get("Content-MD5") }
+	get contentType() { return this.get("Content-Type") }
+	get cookie() { return this.get("Cookie") }
+	get date() { return this.get("Date") }
+	get expect() { return this.get("Expect") }
+	get forwarded() { return this.get("Forwarded") }
+	get from() { return this.get("From") }
+	get host() { return this.get("Host") }
+	get http2Settings() { return this.get("HTTP2-Settings") }
+	get ifMatch() { return this.getAll("If-Match") }
+	get ifModifiedSince() { return this.get("If-Modified-Since") }
+	get ifNoneMatch() { return this.getAll("If-None-Match") }
+	get ifRange() { return this.get("If-Range") }
+	get ifUnmodifiedSince() { return this.get("If-Unmodified-Since") }
+	get maxForwards() { return this.get("Max-Forwards") }
+	get origin() { return this.get("Origin") }
+	get pragma() { return this.get("Pragma") }
+	get proxyAuthorization() { return this.get("Proxy-Authorization") }
+	get range() { return this.get("Range") }
+	get referer() { return this.get("Referer") }
+	get te() { return this.getAll("TE") }
+	get trailer() { return this.get("Trailer") }
+	get transferEncoding() { return this.get("Transfer-Encoding") }
+	get userAgent() { return this.get("User-Agent") }
+	get upgrade() { return this.getAll("Upgrade") }
+	get via() { return this.getAll("Via") }
+	get warning() { return this.get("Warning") }
+	get upgradeInsecureRequests() { return this.get("Upgrade-Insecure-Requests") }
+	get xRequestedWith() { return this.get("X-Requested-With") }
+	get dnt() { return this.get("DNT") }
+	get xForwardedFor() { return this.get("X-Forwarded-For") }
+	get xForwardedHost() { return this.get("X-Forwarded-Host") }
+	get xForwardedProto() { return this.get("X-Forwarded-Proto") }
+	get frontEndHttps() { return this.get("Front-End-Https") }
+	get xHttpMethodOverride() { return this.get("X-Http-Method-Override") }
+	get xAttDeviceId() { return this.get("X-ATT-DeviceId") }
+	get xWapProfile() { return this.get("X-Wap-Profile") }
+	get proxyConnection() { return this.get("Proxy-Connection") }
+	get xCsrfToken() { return this.get("X-Csrf-Token") }
+	get xCorrelationId() { return this.get("X-Correlation-ID") }
+	get saveData() { return this.get("Save-Data") }
 	constructor(private readonly data: { [header: string]: string }) { }
-	private get(field: string): undefined | string | string[] {
+	private getAll(field: string): undefined | string[] {
+		const result = this.get(field)
+		return result && result.split(",").map(v => v.trim()) || undefined
+	}
+	private get(field: string): undefined | string {
 		return this.data[field] || this.data[field.toLowerCase()]
 	}
 }
