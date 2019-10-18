@@ -6,7 +6,7 @@ export function create(response: Response | any): Required<Response> {
 		delete response.response
 	const result: Required<Response> = Response.is(response) ?
 		{ status: 200, header: {}, body: "", ...response } :
-		{ status: typeof(response) == "object" && typeof(response.status) == "number" && response.status || 200, header: {}, body: response }
+		{ status: typeof(response) == "object" && typeof(response.status) == "number" && response.status || 200, header: (response.status == 301 || response.status == 302) && response.location ? { location: response.location } : {}, body: response }
 	if (!result.header.contentType)
 		switch (typeof(result.body)) {
 			default:
