@@ -1,4 +1,11 @@
-export type Query = { [key: string]: Query } | string
+export type Query =
+	| QueryObject
+	| QueryArray
+	| string
+interface QueryObject {
+	[key: string]: Query
+}
+interface QueryArray extends Array<Query> {}
 
 export namespace Query {
 	export function parse(data: any | string): Query | undefined {
@@ -11,14 +18,18 @@ export namespace Query {
 			: undefined
 	}
 }
-function reduce(previous: Query | string | undefined, property: string[], value: string): Query | string {
+
+function reduce(previous: Query | undefined, property: string[], value: string): Query {
 	const p = property.shift()
-	let result: Query | string
-	if (!p)
+	let result: Query
+	if (p == undefined)
 		result = value
-	else {
-		result = typeof(previous) == "string" ? { _: previous } : previous ? { ...previous } : {}
-		result[p] = property.length > 0 ? reduce(result[p], property, value) : value
+	else if (p == "") {
+		result = Array.isArray(previous) ? [...previous] : previous ? [previous] : []
+		result.push(reduce(undefined, property, value))
+	} else {
+		result = (typeof(previous) == "string" ? { _: previous } : previous ? { ...previous } : {}) as QueryObject
+		result[p] = reduce(result[p], property, value)
 	}
 	return result
 }
