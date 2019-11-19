@@ -20,7 +20,7 @@ describe("servly", () => {
 		return result
 	})
 	it("url", async () => expect(await endpoint({
-		url: "http://example.com/"
+		url: "http://example.com/",
 	})).toEqual({
 		status: 200,
 		header: {
