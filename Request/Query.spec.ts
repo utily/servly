@@ -28,4 +28,11 @@ describe("Request.Query", () => {
 			cesar: "2",
 		},
 	}))
+	it("array", () => expect(Query.parse("alpha=0&beta[]=1&beta[]=2")).toEqual({
+		alpha: "0",
+		beta: [
+			"1",
+			"2",
+		],
+	}))
 })
