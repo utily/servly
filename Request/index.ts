@@ -7,6 +7,7 @@ export interface Request {
 	readonly url: string
 	readonly query: { [key: string]: string }
 	readonly parameter: { [key: string]: string }
+	readonly remote?: string
 	readonly header: RequestHeader
 	readonly body?: Promise<any>
 	readonly raw?: Promise<any>
@@ -14,7 +15,7 @@ export interface Request {
 
 export namespace Request {
 	export function create(request: Omit<Partial<Request>, "body"> & { body?: Promise<any> | object | any }): Request {
-		let result: Request = { url: "", query: {}, parameter: {}, header: {}, ...request }
+		let result: Request = { url: "", query: {}, parameter: {}, header: {}, ...request, remote: request.remote }
 		if (result.raw) {
 			if (!result.body)
 				result = { ...result, body: result.raw.then(data => parse(result.header, data)) }
