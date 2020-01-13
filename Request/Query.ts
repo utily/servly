@@ -20,6 +20,7 @@ export namespace Query {
 }
 function decode(data: string): string {
 	let result: string
+	data = data.replace(/\+/g, " ")
 	try {
 		result = decodeURIComponent(data)
 	} catch (error) {

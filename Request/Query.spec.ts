@@ -14,6 +14,10 @@ describe("Request.Query", () => {
 		"alpha&beta": "alpha and beta",
 		cesar: "2",
 	}))
+	it("space +", () => expect(Query.parse("alpha%26beta=alpha+and+beta&cesar=2")).toEqual({
+		"alpha&beta": "alpha and beta",
+		cesar: "2",
+	}))
 	it("no value", () => expect(Query.parse("alpha=&cesar=2")).toEqual({
 		alpha: "",
 		cesar: "2",
