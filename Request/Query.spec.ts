@@ -4,6 +4,7 @@ describe("Request.Query", () => {
 	it("number", () => expect(Query.parse(42)).toBeUndefined())
 	it("undefined", () => expect(Query.parse(undefined)).toBeUndefined())
 	it("empty string", () => expect(Query.parse("")).toEqual({}))
+	it("empty property", () => expect(Query.parse("empty=&next=2")).toEqual({ empty: "", next: "2" }))
 	it("correct string", () => expect(Query.parse("alpha=0&beta=1&cesar=2")).toEqual({
 		alpha: "0",
 		beta: "1",
@@ -35,4 +36,5 @@ describe("Request.Query", () => {
 			"2",
 		],
 	}))
+	it("unescape", () => expect(Query.parse("alpha=%20%F5a")).toEqual({ alpha: " õa" }))
 })
