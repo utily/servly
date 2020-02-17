@@ -5,11 +5,11 @@
  "author": "PayFunc",
  "license": "MIT",
  "repository": {
-	"type": "git",
-	"url": "git+https://github.com/payfunc/servly"
+  "type": "git",
+  "url": "git+https://github.com/payfunc/servly"
  },
  "bugs": {
-	"url": "https://github.com/payfunc/servly/issues"
+  "url": "https://github.com/payfunc/servly/issues"
  },
  "homepage": "https://payfunc.com/open-source/servly",
  "private": false,
