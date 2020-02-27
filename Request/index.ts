@@ -15,11 +15,12 @@ export interface Request {
 	readonly header: RequestHeader
 	readonly body?: Promise<any>
 	readonly raw?: Promise<any>
+	log(message?: any[], ...parameters: any[]): void
 }
 
 export namespace Request {
 	export function create(request: Omit<Partial<Request>, "body"> & { body?: Promise<any> | object | any }): Request {
-		let result: Request = { url: "", baseUrl: getBaseUrl(request.url) || "", query: {}, parameter: {}, header: {}, ...request, remote: request.remote }
+		let result: Request = { log: console.log, url: "", baseUrl: getBaseUrl(request.url) || "", query: {}, parameter: {}, header: {}, ...request, remote: request.remote }
 		if (result.raw) {
 			if (!result.body)
 				result = { ...result, body: result.raw.then(data => parse(result.header, data)) }
