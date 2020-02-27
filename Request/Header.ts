@@ -54,7 +54,7 @@ export interface Header {
 	readonly saveData	?: string
 }
 class HeaderDefault implements Header {
-	get aIm() { return this.get("A-IM") }
+	get aIM() { return this.get("A-IM") }
 	get accept() { return this.getAll("Accept") }
 	get acceptCharset() { return this.getAll("Accept-Charset") }
 	get acceptDatetime() { return this.get("Accept-Datetime") }
@@ -66,7 +66,7 @@ class HeaderDefault implements Header {
 	get cacheControl() { return this.get("Cache-Control") }
 	get connection() { return this.get("Connection") }
 	get contentLength() { return this.get("Content-Length") }
-	get contentMd5() { return this.get("Content-MD5") }
+	get contentMD5() { return this.get("Content-MD5") }
 	get contentType() { return this.get("Content-Type") }
 	get cookie() { return this.get("Cookie") }
 	get date() { return this.get("Date") }
@@ -105,7 +105,7 @@ class HeaderDefault implements Header {
 	get xWapProfile() { return this.get("X-Wap-Profile") }
 	get proxyConnection() { return this.get("Proxy-Connection") }
 	get xCsrfToken() { return this.get("X-Csrf-Token") }
-	get xCorrelationId() { return this.get("X-Correlation-ID") }
+	get xCorrelationID() { return this.get("X-Correlation-ID") }
 	get saveData() { return this.get("Save-Data") }
 	constructor(private readonly data: { [header: string]: string }) { }
 	private getAll(field: string): undefined | string[] {
@@ -120,5 +120,66 @@ class HeaderDefault implements Header {
 export namespace Header {
 	export function from(data: { [field: string]: string }): Header {
 		return new HeaderDefault(data)
+	}
+	function set(name: string, value: undefined | string | string[], result: { [field: string]: string }): void {
+		if (value)
+			result[name] = Array.isArray(value) ? value.join(", ") : value
+	}
+	export function to(header: Header): { [field: string]: string } {
+		const result: { [field: string]: string } = {}
+		set("A-IM", header.aIM, result)
+		set("Accept", header.accept, result)
+		set("Accept-Charset", header.acceptCharset, result)
+		set("Accept-Datetime", header.acceptDatetime, result)
+		set("Accept-Encoding", header.acceptEncoding, result)
+		set("Accept-Language", header.acceptLanguage, result)
+		set("Access-Control-Request-Method", header.accessControlRequestMethod, result)
+		set("Access-Control-Request-Headers", header.accessControlRequestHeaders, result)
+		set("Authorization", header.authorization, result)
+		set("Cache-Control", header.cacheControl, result)
+		set("Connection", header.connection, result)
+		set("Content-Length", header.contentLength, result)
+		set("Content-MD5", header.contentMD5, result)
+		set("Content-Type", header.contentType, result)
+		set("Cookie", header.cookie, result)
+		set("Date", header.date, result)
+		set("Expect", header.expect, result)
+		set("Forwarded", header.forwarded, result)
+		set("From", header.from, result)
+		set("Host", header.host, result)
+		set("HTTP2-Settings", header.http2Settings, result)
+		set("If-Match", header.ifMatch, result)
+		set("If-Modified-Since", header.ifModifiedSince, result)
+		set("If-None-Match", header.ifNoneMatch, result)
+		set("If-Range", header.ifRange, result)
+		set("If-Unmodified-Since", header.ifUnmodifiedSince, result)
+		set("Max-Forwards", header.maxForwards, result)
+		set("Origin", header.origin, result)
+		set("Pragma", header.pragma, result)
+		set("Proxy-Authorization", header.proxyAuthorization, result)
+		set("Range", header.range, result)
+		set("Referer", header.referer, result)
+		set("TE", header.te, result)
+		set("Trailer", header.trailer, result)
+		set("Transfer-Encoding", header.transferEncoding, result)
+		set("User-Agent", header.userAgent, result)
+		set("Upgrade", header.upgrade, result)
+		set("Via", header.via, result)
+		set("Warning", header.warning, result)
+		set("Upgrade-Insecure-Requests", header.upgradeInsecureRequests, result)
+		set("X-Requested-With", header.xRequestedWith, result)
+		set("DNT", header.dnt, result)
+		set("X-Forwarded-For", header.xForwardedFor, result)
+		set("X-Forwarded-Host", header.xForwardedHost, result)
+		set("X-Forwarded-Proto", header.xForwardedProto, result)
+		set("Front-End-Https", header.frontEndHttps, result)
+		set("X-Http-Method-Override", header.xHttpMethodOverride, result)
+		set("X-ATT-DeviceId", header.xAttDeviceId, result)
+		set("X-Wap-Profile", header.xWapProfile, result)
+		set("Proxy-Connection", header.proxyConnection, result)
+		set("X-Csrf-Token", header.xCsrfToken, result)
+		set("X-Correlation-ID", header.xCorrelationID, result)
+		set("Save-Data", header.saveData, result)
+		return result
 	}
 }

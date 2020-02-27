@@ -1,3 +1,5 @@
+import { default as f, Response as FetchResponse } from "node-fetch"
+import { Response } from "../Response"
 import { Header as RequestHeader } from "./Header"
 import { Method as RequestMethod } from "./Method"
 import { parse as parseBody } from "./parse"
@@ -25,9 +27,14 @@ export namespace Request {
 			result = { ...result, body: Promise.resolve(result.body) }
 		return result
 	}
+	export async function fetch(request: Request): Promise<Response> {
+		const result: FetchResponse = await f(request.url, { method: request.method, headers: RequestHeader.to(request.header), body: await request.raw })
+		return { status: result.status, header: Response.Header.from(result.headers.raw()), body: await result.body }
+	}
 	export type Header = RequestHeader
 	export namespace Header {
 		export const from = RequestHeader.from
+		export const to = RequestHeader.to
 	}
 	export type Method = RequestMethod
 	export const parse = parseBody

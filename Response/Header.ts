@@ -124,4 +124,12 @@ export namespace Header {
 	export function to(header: Header): { [field: string]: string | number | string[] | undefined } {
 		return Object.entries(header).map<[string, string | number | string[] | undefined]>(h => [(fields as { [field: string]: string | undefined })[h[0]] || h[0], h[1]]).reduce<{ [field: string]: string | number | string[] | undefined }>((r, f) => { r[f[0]] = f[1]; return r }, { })
 	}
+	export function from(data: { [field: string]: string[] }): Header {
+		return Object.entries(fields).reduce<Header & { [header: string]: string | string[]}>((r, h) => {
+			const d = data[h[1]]
+			if (d.length > 0)
+				r[h[0]] = d.length == 1 ? d[0] : d
+			return r
+		}, {})
+	}
 }
