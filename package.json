@@ -51,10 +51,13 @@
   "prepare": "npm run build",
   "clean": "rm -rf dist node_modules coverage"
  },
- "dependencies": {},
+ "dependencies": {
+  "node-fetch": "^2.6.0"
+ },
  "devDependencies": {
   "@types/jest": "^25.1.2",
   "@types/node": "^13.7.1",
+  "@types/node-fetch": "^2.5.5",
   "babel-core": "^6.26.3",
   "babel-jest": "^25.1.0",
   "jest": "^25",

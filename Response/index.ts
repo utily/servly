@@ -19,5 +19,6 @@ export namespace Response {
 	export namespace Header {
 		export const fields = ResponseHeader.fields
 		export const to = ResponseHeader.to
+		export const from = ResponseHeader.from
 	}
 }
