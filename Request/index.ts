@@ -15,7 +15,7 @@ export interface Request {
 	readonly header: RequestHeader
 	readonly body?: Promise<any>
 	readonly raw?: Promise<any>
-	log(message?: any[], ...parameters: any[]): void
+	log(message?: any, ...parameters: any[]): void
 }
 
 export namespace Request {
