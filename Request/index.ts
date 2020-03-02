@@ -30,7 +30,14 @@ export namespace Request {
 	}
 	export async function fetch(request: Request): Promise<Response> {
 		const result: FetchResponse = await f(request.url, { method: request.method, headers: RequestHeader.to(request.header), body: await request.raw })
-		return { status: result.status, header: Response.Header.from(result.headers.raw()), body: await result.body }
+		const header = Response.Header.from(result.headers.raw())
+		let body = result.body
+		if (typeof header.contentType == "string") {
+			const encoding = header.contentType.split("charset=", 2)
+			if (encoding.length == 2)
+				body = body.setEncoding(encoding[1])
+		}
+		return { status: result.status, header, body: body.read() }
 	}
 	export type Header = RequestHeader
 	export namespace Header {
