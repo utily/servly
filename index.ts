@@ -3,9 +3,11 @@ import { Request } from "./Request"
 import { Response } from "./Response"
 import { create } from "./Response/create"
 
-const tasks: Promise<void>[] = []
+let tasks: Promise<void>[] = []
 async function finish(): Promise<void> {
-	await Promise.all(tasks)
+	const t = tasks
+	tasks = []
+	await Promise.all(t)
 }
 function schedule(task: Promise<void>): void {
 	tasks.push(task)
