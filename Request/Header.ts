@@ -115,6 +115,9 @@ class HeaderDefault implements Header {
 	private get(field: string): undefined | string {
 		return this.data[field] || this.data[field.toLowerCase()]
 	}
+	protected toJSON(): Header {
+		return this.data
+	}
 }
 
 export namespace Header {
