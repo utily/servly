@@ -52,18 +52,19 @@
   "clean": "rm -rf dist node_modules coverage"
  },
  "dependencies": {
+  "gracely": "0.0.31",
   "node-fetch": "^2.6.0"
  },
  "devDependencies": {
-  "@types/jest": "^25.1.2",
-  "@types/node": "^13.7.1",
+  "@types/jest": "^25.1.4",
+  "@types/node": "^13.9.8",
   "@types/node-fetch": "^2.5.5",
   "babel-core": "^6.26.3",
-  "babel-jest": "^25.1.0",
+  "babel-jest": "^25.2.4",
   "jest": "^25",
-  "ts-jest": "^25.2.0",
-  "tslint": "^6.0.0",
-  "typescript": "^3.7.5",
+  "ts-jest": "^25.3.0",
+  "tslint": "^6.1.0",
+  "typescript": "^3.8.3",
   "watch": "^1.0.2"
  }
 }
