@@ -12,5 +12,4 @@ export namespace Timer {
 			await finish()
 		}
 	}
-	export type Ejector = (endpoint: Timer) => void
 }
