@@ -21,5 +21,4 @@ export namespace Endpoint {
 			return result
 		}
 	}
-	export type Ejector<T> = (endpoint: Endpoint) => T
 }
