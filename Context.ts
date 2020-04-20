@@ -1,4 +1,4 @@
-import * as Log from "./Log"
+import { Log } from "./Log"
 import { Request } from "./Request"
 
 export interface Context {
