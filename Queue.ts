@@ -1,6 +1,5 @@
 import { Context } from "./Context"
 import { Response } from "./Response"
-import { Request } from "./Request"
 import { fetch } from "./fetch"
 import { finish } from "./schedule"
 
@@ -20,7 +19,7 @@ export namespace Queue {
 		}
 	}
 	export function callback() {
-		return create(async (request: Omit<Request, "body" | "log" | "raw"> & { body: any }, context: Context) => {
+		return create(async (request: fetch.Request, context: Context) => {
 			try {
 				const response = await fetch(request)
 				context.log("servly.callback", "trace", { request, response })
