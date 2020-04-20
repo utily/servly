@@ -6,13 +6,7 @@ import { Response } from "../Response"
 export async function fetch(request: FetchRequest): Promise<Response> {
 	const result: FetchResponse = await f(request.url, { method: request.method ?? "GET", headers: R.Header.to(request.header ?? { }), body: request.body })
 	const header = Response.Header.from(result.headers.raw())
-	let body = result.body
-	if (typeof header.contentType == "string") {
-		const encoding = header.contentType.split("charset=", 2)
-		if (encoding.length == 2)
-			body = body.setEncoding(encoding[1])
-	}
-	return { status: result.status, header, body: body.read() }
+	return { status: result.status, header, body: await result.text() }
 }
 export namespace fetch {
 	export type Request = FetchRequest

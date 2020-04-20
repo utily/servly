@@ -4,7 +4,7 @@ export interface Request {
 	url: string
 	method?: R.Method
 	header?: R.Header
-	body: any
+	body?: any
 }
 export namespace Request {
 	export function is(value: any | Request): value is Request {
