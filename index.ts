@@ -1,6 +1,7 @@
 import { Context } from "./Context"
 import { Endpoint } from "./Endpoint"
 import { Function } from "./Function"
+import * as Log from "./Log"
 import { Queue } from "./Queue"
 import { Request } from "./Request"
 import { Response } from "./Response"
@@ -13,6 +14,7 @@ export {
 	Context,
 	Endpoint,
 	Function,
+	Log,
 	Queue,
 	Request,
 	Response,

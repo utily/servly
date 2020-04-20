@@ -13,20 +13,19 @@ export namespace Queue {
 			try {
 				result = await handler(item, Context.create(context))
 			} catch (error) {
-				console.log("servly catch", item, context, error)
+				console.log("servly.catch", item, context, error)
 			}
 			await finish()
 			return result
 		}
 	}
 	export function callback() {
-		return create(async (request: Request, context: Context) => {
-			let response: Response | undefined
+		return create(async (request: Omit<Request, "body" | "log" | "raw"> & { body: any }, context: Context) => {
 			try {
-				response = await fetch(request)
-			} catch (errror) {
-			} finally {
-				context.log(request, response)
+				const response = await fetch(request)
+				context.log("servly.callback", "trace", { request, response })
+			} catch (error) {
+				context.log("servly.catch", "error", { request, error })
 			}
 		})
 	}

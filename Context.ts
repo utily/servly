@@ -1,3 +1,4 @@
+import * as Log from "./Log"
 import { Request } from "./Request"
 
 export interface Context {
@@ -6,7 +7,7 @@ export interface Context {
 		name: string
 		path: string
 	}
-	log: (...argument: any[]) => void
+	log: (step: string, level: Log.Level, content: Log.Content) => void
 	callback: (request: Request) => void
 }
 export namespace Context {
@@ -17,7 +18,7 @@ export namespace Context {
 				name: "",
 				path: "",
 			},
-			log: (...argument: any[]): void => {},
+			log: (step: string, level: Log.Level, content: Log.Content): void => {},
 			callback: _ => {},
 			...context,
 		}
