@@ -1,9 +1,9 @@
 import { default as f, Response as FetchResponse } from "node-fetch"
-import { Request } from "./Request"
+import { Request as FetchRequest } from "./Request"
 import { Request as R } from "../Request"
 import { Response } from "../Response"
 
-export async function fetch(request: Request): Promise<Response> {
+export async function fetch(request: FetchRequest): Promise<Response> {
 	const result: FetchResponse = await f(request.url, { method: request.method ?? "GET", headers: R.Header.to(request.header ?? { }), body: request.body })
 	const header = Response.Header.from(result.headers.raw())
 	let body = result.body
@@ -13,4 +13,7 @@ export async function fetch(request: Request): Promise<Response> {
 			body = body.setEncoding(encoding[1])
 	}
 	return { status: result.status, header, body: body.read() }
+}
+export namespace fetch {
+	export type Request = FetchRequest
 }

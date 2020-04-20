@@ -16,6 +16,7 @@ export interface Request {
 	log(message?: any, ...parameters: any[]): void
 }
 
+// tslint:disable: no-shadowed-variable
 export namespace Request {
 	export function create(request: Omit<Partial<Request>, "body"> & { body?: Promise<any> | object | any }): Request {
 		let result: Request = { log: console.log, url: "", baseUrl: getBaseUrl(request.url) || "", query: {}, parameter: {}, header: {}, ...request, remote: request.remote }
@@ -28,9 +29,13 @@ export namespace Request {
 	}
 	export type Header = RequestHeader
 	export namespace Header {
+		export const is = RequestMethod.is
 		export const from = RequestHeader.from
 		export const to = RequestHeader.to
 	}
 	export type Method = RequestMethod
+	export namespace Method {
+		export const is = RequestMethod.is
+	}
 	export const parse = parseBody
 }

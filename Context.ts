@@ -1,5 +1,5 @@
 import { Log } from "./Log"
-import { Request } from "./Request"
+import { fetch } from "./fetch"
 
 export interface Context {
 	id: string
@@ -8,7 +8,7 @@ export interface Context {
 		path: string
 	}
 	log: (step: string, level: Log.Level, content: Log.Content) => void
-	callback: (request: Request) => void
+	callback: (request: fetch.Request) => void
 }
 export namespace Context {
 	export function create(context?: Partial<Context>): Context {
