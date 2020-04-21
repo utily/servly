@@ -119,8 +119,69 @@ class HeaderDefault implements Header {
 		return this.data
 	}
 }
-
+function isString(value: any | string): value is string {
+	return value == undefined || typeof value == "string"
+}
+function isStringArray(value: any | string[]): value is string[] {
+	return value == undefined || Array.isArray(value) && value.every(v => typeof v == "string")
+}
 export namespace Header {
+	export function is(value: any | Header): value is Header {
+		return typeof value == "object" &&
+			isString(value.aIM) &&
+			isStringArray(value.accept) &&
+			isStringArray(value.acceptCharset) &&
+			isString(value.acceptDatetime) &&
+			isStringArray(value.acceptEncoding) &&
+			isStringArray(value.acceptLanguage) &&
+			isString(value.accessControlRequestMethod) &&
+			isString(value.accessControlRequestHeaders) &&
+			isString(value.authorization) &&
+			isString(value.cacheControl) &&
+			isString(value.connection) &&
+			isString(value.contentLength) &&
+			isString(value.contentMD5) &&
+			isString(value.contentType) &&
+			isString(value.cookie) &&
+			isString(value.date) &&
+			isString(value.expect) &&
+			isString(value.forwarded) &&
+			isString(value.from) &&
+			isString(value.host) &&
+			isString(value.http2Settings) &&
+			isStringArray(value.ifMatch) &&
+			isString(value.ifModifiedSince) &&
+			isStringArray(value.ifNoneMatch) &&
+			isString(value.ifRange) &&
+			isString(value.ifUnmodifiedSince) &&
+			isString(value.maxForwards) &&
+			isString(value.origin) &&
+			isString(value.pragma) &&
+			isString(value.proxyAuthorization) &&
+			isString(value.range) &&
+			isString(value.referer) &&
+			isStringArray(value.te) &&
+			isString(value.trailer) &&
+			isString(value.transferEncoding) &&
+			isString(value.userAgent) &&
+			isStringArray(value.upgrade) &&
+			isStringArray(value.via) &&
+			isString(value.warning) &&
+			isString(value.upgradeInsecureRequests) &&
+			isString(value.xRequestedWith) &&
+			isString(value.dnt) &&
+			isString(value.xForwardedFor) &&
+			isString(value.xForwardedHost) &&
+			isString(value.xForwardedProto) &&
+			isString(value.frontEndHttps) &&
+			isString(value.xHttpMethodOverride) &&
+			isString(value.xAttDeviceId) &&
+			isString(value.xWapProfile) &&
+			isString(value.proxyConnection) &&
+			isString(value.xCsrfToken) &&
+			isString(value.xCorrelationID) &&
+			(value.saveData == undefined || typeof value.saveData == "string")
+	}
 	export function from(data: { [field: string]: string }): Header {
 		return new HeaderDefault(data)
 	}

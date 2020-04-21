@@ -1,5 +1,3 @@
-import { default as f, Response as FetchResponse } from "node-fetch"
-import { Response } from "../Response"
 import { Header as RequestHeader } from "./Header"
 import { Method as RequestMethod } from "./Method"
 import { parse as parseBody } from "./parse"
@@ -18,6 +16,7 @@ export interface Request {
 	log(message?: any, ...parameters: any[]): void
 }
 
+// tslint:disable: no-shadowed-variable
 export namespace Request {
 	export function create(request: Omit<Partial<Request>, "body"> & { body?: Promise<any> | object | any }): Request {
 		let result: Request = { log: console.log, url: "", baseUrl: getBaseUrl(request.url) || "", query: {}, parameter: {}, header: {}, ...request, remote: request.remote }
@@ -28,22 +27,15 @@ export namespace Request {
 			result = { ...result, body: Promise.resolve(result.body) }
 		return result
 	}
-	export async function fetch(request: Request): Promise<Response> {
-		const result: FetchResponse = await f(request.url, { method: request.method, headers: RequestHeader.to(request.header), body: await request.raw })
-		const header = Response.Header.from(result.headers.raw())
-		let body = result.body
-		if (typeof header.contentType == "string") {
-			const encoding = header.contentType.split("charset=", 2)
-			if (encoding.length == 2)
-				body = body.setEncoding(encoding[1])
-		}
-		return { status: result.status, header, body: body.read() }
-	}
 	export type Header = RequestHeader
 	export namespace Header {
+		export const is = RequestMethod.is
 		export const from = RequestHeader.from
 		export const to = RequestHeader.to
 	}
 	export type Method = RequestMethod
+	export namespace Method {
+		export const is = RequestMethod.is
+	}
 	export const parse = parseBody
 }

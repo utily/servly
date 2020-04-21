@@ -53,6 +53,7 @@
  },
  "dependencies": {
   "gracely": "0.0.31",
+  "isoly": "0.0.13",
   "node-fetch": "^2.6.0"
  },
  "devDependencies": {

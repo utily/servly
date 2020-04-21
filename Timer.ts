@@ -1,13 +1,16 @@
+import { Context } from "./Context"
 import { finish } from "./schedule"
-export type Timer = () => Promise<void>
+
+export type Timer = (context?: Partial<Context>) => Promise<void>
 
 export namespace Timer {
-	export function create(handler: () => Promise<void>): Timer {
-		return async () => {
+	export function create(handler: (context?: Context) => Promise<void>): Timer {
+		return async (context?: Partial<Context>) => {
+			const c = Context.create(context)
 			try {
-				await handler()
+				await handler(c)
 			} catch (error) {
-				console.log("servly timer catch", error)
+				c.log("servly.catch", "error", { error })
 			}
 			await finish()
 		}
