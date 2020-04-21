@@ -1,4 +1,3 @@
-import { Content } from "./Content"
 import { Log } from "./Log"
 import { Meta } from "./Meta"
 import { fetch } from "./fetch"
@@ -10,7 +9,7 @@ export interface Context {
 		readonly path: string
 	}
 	meta: Meta
-	readonly log: (step: string, level: Log.Level, content: Content) => void
+	readonly log: (step: string, level: Log.Level, content: any) => void
 	readonly callback: (request: fetch.Request) => void
 }
 export namespace Context {
@@ -22,7 +21,7 @@ export namespace Context {
 				path: "",
 			},
 			meta: {},
-			log: (step: string, level: Log.Level, content: Content): void => {},
+			log: (step: string, level: Log.Level, content: any): void => {},
 			callback: _ => {},
 			...context,
 		}

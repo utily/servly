@@ -1,16 +1,15 @@
-
 import * as isoly from "isoly"
-import { Content } from "../Content"
-import { Level } from "./Level"
+import { Content } from "../../Content"
+import { Level } from "../Level"
 
-export interface Entry {
+export interface Creatable {
 	created: isoly.DateTime
 	step: string
 	level: Level
 	content: Content
 }
-export namespace Entry {
-	export function is(value: any | Entry): value is Entry {
+export namespace Creatable {
+	export function is(value: any | Creatable): value is Creatable {
 		return typeof value == "object" &&
 			typeof value.invocation == "string" &&
 			typeof value.point == "string" &&

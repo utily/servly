@@ -4,14 +4,14 @@ import { Response } from "./Response"
 import { fetch } from "./fetch"
 import { finish } from "./schedule"
 
-export type Queue<T, S> = (item: T, context: Partial<Context>) => Promise<S | S[]>
+export type Queue<T, S> = (context: Partial<Context>, item: T) => Promise<S | S[]>
 
 export namespace Queue {
-	export function create<T, S>(handler: (item: T, context: Context) => Promise<S | S[]>): Queue<T, S> {
-		return async (item, context) => {
+	export function create<T, S>(handler: (context: Context, item: T) => Promise<S | S[]>): Queue<T, S> {
+		return async (context, item) => {
 			let result: Response | any
 			try {
-				result = await handler(item, Context.create(context))
+				result = await handler(Context.create(context), item)
 			} catch (error) {
 				console.log("servly.catch", item, context, error)
 			}
@@ -20,7 +20,7 @@ export namespace Queue {
 		}
 	}
 	export function callback() {
-		return create(async (request: fetch.Request & { meta: Meta }, context: Context) => {
+		return create(async (context: Context, request: fetch.Request & { meta: Meta }) => {
 			context.meta = { ...context.meta, ...request.meta }
 			try {
 				const response = await fetch(request)
