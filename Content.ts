@@ -10,7 +10,7 @@ export namespace Content {
 			value == null ||
 			value == undefined
 	}
-	export function freeze(value: Content): Content {
+	export function freeze(value: any): Content {
 		return JSON.parse(JSON.stringify(value))
 	}
 }
