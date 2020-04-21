@@ -1,6 +1,6 @@
 
 import * as isoly from "isoly"
-import { Content } from "./Content"
+import { Content } from "../Content"
 import { Level } from "./Level"
 
 export interface Entry {
