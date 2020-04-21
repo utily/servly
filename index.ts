@@ -1,3 +1,4 @@
+import { Content } from "./Content"
 import { Context } from "./Context"
 import { Endpoint } from "./Endpoint"
 import { Function } from "./Function"
@@ -11,6 +12,7 @@ import { fetch } from "./fetch"
 import { schedule } from "./schedule"
 
 export {
+	Content,
 	Context,
 	Endpoint,
 	Function,

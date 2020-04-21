@@ -1,14 +1,17 @@
+import { Content } from "./Content"
 import { Log } from "./Log"
+import { Meta } from "./Meta"
 import { fetch } from "./fetch"
 
 export interface Context {
-	id: string
-	function: {
-		name: string
-		path: string
+	readonly id: string
+	readonly function: {
+		readonly name: string
+		readonly path: string
 	}
-	log: (step: string, level: Log.Level, content: Log.Content) => void
-	callback: (request: fetch.Request) => void
+	meta: Meta
+	readonly log: (step: string, level: Log.Level, content: Content) => void
+	readonly callback: (request: fetch.Request) => void
 }
 export namespace Context {
 	export function create(context?: Partial<Context>): Context {
@@ -18,7 +21,8 @@ export namespace Context {
 				name: "",
 				path: "",
 			},
-			log: (step: string, level: Log.Level, content: Log.Content): void => {},
+			meta: {},
+			log: (step: string, level: Log.Level, content: Content): void => {},
 			callback: _ => {},
 			...context,
 		}
