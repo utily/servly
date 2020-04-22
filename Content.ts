@@ -6,7 +6,7 @@ export namespace Content {
 			typeof value == "string" ||
 			typeof value == "boolean" ||
 			Array.isArray(value) && value.every(is) ||
-			typeof value == "object" && Object.values(value).every(is) ||
+			value instanceof Object && Object.values(value).every(is) ||
 			value == null ||
 			value == undefined
 	}
