@@ -12,7 +12,7 @@ export interface Log extends Meta {
 export namespace Log {
 	export function is(value: any | Log): value is Log {
 		return typeof value == "object" &&
-			(value.invocation == undefined && typeof value.invocation == "string") &&
+			(value.invocation == undefined || typeof value.invocation == "string") &&
 			typeof value.point == "string" &&
 			Array.isArray(value.entries) && value.entries.every(LogEntry.is) &&
 			Meta.is(value)
