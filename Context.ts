@@ -14,7 +14,8 @@ export interface Context {
 }
 export namespace Context {
 	export function create(context?: Partial<Context>): Context {
-		return {
+		// tslint:disable-next-line: prefer-object-spread
+		return Object.assign(context, {
 			id: "",
 			function: {
 				name: "",
@@ -22,8 +23,8 @@ export namespace Context {
 			},
 			meta: {},
 			log: (step: string, level: Log.Level, content: any): void => {},
-			callback: _ => {},
+			callback: (_: fetch.Request) => {},
 			...context,
-		}
+		})
 	}
 }
