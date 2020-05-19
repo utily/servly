@@ -7,6 +7,7 @@ import { Meta } from "./Meta"
 import { Queue } from "./Queue"
 import { Request } from "./Request"
 import { Response } from "./Response"
+import { Router } from "./Router"
 import { Timer } from "./Timer"
 import { create } from "./Response/create"
 import { fetch } from "./fetch"
@@ -22,6 +23,7 @@ export {
 	Queue,
 	Request,
 	Response,
+	Router,
 	Timer,
 	create,
 	fetch,
