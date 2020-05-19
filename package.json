@@ -52,7 +52,7 @@
   "clean": "rm -rf dist node_modules coverage"
  },
  "dependencies": {
-  "gracely": "0.0.31",
+  "gracely": "0.0.32",
   "isoly": "0.0.13",
   "node-fetch": "^2.6.0"
  },
