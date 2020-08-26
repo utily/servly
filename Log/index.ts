@@ -8,14 +8,16 @@ export interface Log extends Meta {
 	entries: LogEntry[]
 }
 
-// tslint:disable: no-shadowed-variable
 export namespace Log {
 	export function is(value: any | Log): value is Log {
-		return typeof value == "object" &&
+		return (
+			typeof value == "object" &&
 			(value.invocation == undefined || typeof value.invocation == "string") &&
 			typeof value.point == "string" &&
-			Array.isArray(value.entries) && value.entries.every(LogEntry.is) &&
+			Array.isArray(value.entries) &&
+			value.entries.every(LogEntry.is) &&
 			Meta.is(value)
+		)
 	}
 	export type Entry = LogEntry
 	export namespace Entry {
