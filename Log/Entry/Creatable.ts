@@ -8,9 +8,8 @@ export interface Creatable {
 }
 export namespace Creatable {
 	export function is(value: any | Creatable): value is Creatable {
-		return typeof value == "object" &&
-			typeof value.step == "string" &&
-			Level.is(value.level) &&
-			Content.is(value.content)
+		return (
+			typeof value == "object" && typeof value.step == "string" && Level.is(value.level) && Content.is(value.content)
+		)
 	}
 }

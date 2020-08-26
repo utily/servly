@@ -8,9 +8,11 @@ export interface Request {
 }
 export namespace Request {
 	export function is(value: any | Request): value is Request {
-		return typeof value == "object" &&
+		return (
+			typeof value == "object" &&
 			typeof value.url == "string" &&
 			(value.method == undefined || R.Method.is(value.method)) &&
 			(value.method == undefined || R.Header.is(value.header))
+		)
 	}
 }
