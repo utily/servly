@@ -22,7 +22,7 @@ export interface Header {
 	contentType?: string | string[] | number
 	date?: string | string[] | number
 	deltaBase?: string | string[] | number
-	eTag?: string | string[] | number
+	eTag?: string
 	expires?: string | string[] | number
 	iM?: string | string[] | number
 	lastModified?: string | string[] | number
