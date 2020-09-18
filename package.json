@@ -54,7 +54,7 @@
 	},
 	"dependencies": {
 		"eslint-plugin-prettierx": "github:nilssonemma/eslint-plugin-prettierx#master",
-		"gracely": "0.0.33",
+		"gracely": "0.0.37",
 		"isoly": "0.0.14",
 		"node-fetch": "^2.6.0",
 		"prettierx": "github:simonmika/prettierx#newline-before-clause"
