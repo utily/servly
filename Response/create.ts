@@ -8,7 +8,9 @@ export function create(response: Response | any): Required<Response> {
 	)
 		// TODO: remove this once authly is changed to never include response property
 		delete response.response
-	const result: Required<Response> = Response.is(response)
+	const result: Required<Response> = Array.isArray(response)
+		?	{ status: 200, header: {}, body: response }
+		: Response.is(response)
 		? { status: 200, header: {}, body: "", ...response }
 		: {
 				status: (typeof response == "object" && typeof response.status == "number" && response.status) || 200,
