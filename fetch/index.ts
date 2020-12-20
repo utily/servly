@@ -1,7 +1,7 @@
 import { default as f, Response as FetchResponse } from "node-fetch"
-import { Request as FetchRequest } from "./Request"
 import { Request as R } from "../Request"
 import { Response } from "../Response"
+import { Request as FetchRequest } from "./Request"
 
 export async function fetch(request: FetchRequest): Promise<Response> {
 	const result: FetchResponse = await f(request.url, {

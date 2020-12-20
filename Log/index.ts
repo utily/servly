@@ -1,6 +1,6 @@
+import { Meta } from "../Meta"
 import { Entry as LogEntry } from "./Entry"
 import { Level as LogLevel } from "./Level"
-import { Meta } from "../Meta"
 
 export interface Log extends Meta {
 	invocation?: string

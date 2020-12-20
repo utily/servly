@@ -1,5 +1,5 @@
-import { Header as ResponseHeader } from "./Header"
 import { create as createResponse } from "./create"
+import { Header as ResponseHeader } from "./Header"
 
 export interface Response {
 	status?: number

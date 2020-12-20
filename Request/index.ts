@@ -1,7 +1,7 @@
+import { getBaseUrl } from "./getBaseUrl"
 import { Header as RequestHeader } from "./Header"
 import { Method as RequestMethod } from "./Method"
 import { parse as parseBody } from "./parse"
-import { getBaseUrl } from "./getBaseUrl"
 
 export interface Request {
 	readonly method?: RequestMethod
