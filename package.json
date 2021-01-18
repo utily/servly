@@ -1,6 +1,6 @@
 {
 	"name": "servly",
-	"version": "0.1.11",
+	"version": "0.2.0",
 	"description": "Tool to create cloud independent serverless backends. ",
 	"author": "PayFunc",
 	"license": "MIT",
@@ -27,6 +27,12 @@
 				"tsConfig": "tsconfig.test.json"
 			}
 		},
+		"transform": {
+			"^.+\\.(j|t)sx?$": "ts-jest"
+		},
+		"transformIgnorePatterns": [
+			"<rootDir>/node_modules/(?!(cryptly|authly|isoly|gracely)/.*)"
+		],
 		"testEnvironment": "node",
 		"testRegex": "((\\.|/)(test|spec))(\\.|\\/.+)(jsx?|tsx?)$",
 		"testPathIgnorePatterns": [
@@ -53,11 +59,9 @@
 		"clean": "rm -rf dist node_modules coverage"
 	},
 	"dependencies": {
-		"eslint-plugin-prettierx": "github:nilssonemma/eslint-plugin-prettierx#master",
-		"gracely": "0.0.37",
-		"isoly": "0.0.14",
-		"node-fetch": "^2.6.0",
-		"prettierx": "github:simonmika/prettierx#newline-before-clause"
+		"gracely": "0.0.39",
+		"isoly": "0.0.26",
+		"node-fetch": "^2.6.0"
 	},
 	"devDependencies": {
 		"@types/jest": "^26.0.0",
@@ -69,7 +73,9 @@
 		"babel-jest": "^26.0.1",
 		"eslint": "^7.6.0",
 		"eslint-plugin-simple-import-sort": "^7.0.0",
+		"eslint-plugin-prettierx": "github:nilssonemma/eslint-plugin-prettierx#master",
 		"jest": "^26",
+		"prettierx": "github:simonmika/prettierx#newline-before-clause",
 		"ts-jest": "^26.1.0",
 		"typescript": "^3.9.5",
 		"watch": "^1.0.2"
