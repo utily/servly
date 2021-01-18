@@ -53,11 +53,9 @@
 		"clean": "rm -rf dist node_modules coverage"
 	},
 	"dependencies": {
-		"eslint-plugin-prettierx": "github:nilssonemma/eslint-plugin-prettierx#master",
 		"gracely": "0.0.37",
 		"isoly": "0.0.14",
-		"node-fetch": "^2.6.0",
-		"prettierx": "github:simonmika/prettierx#newline-before-clause"
+		"node-fetch": "^2.6.0"
 	},
 	"devDependencies": {
 		"@types/jest": "^26.0.0",
@@ -69,6 +67,8 @@
 		"babel-jest": "^26.0.1",
 		"eslint": "^7.6.0",
 		"eslint-plugin-simple-import-sort": "^7.0.0",
+		"eslint-plugin-prettierx": "github:nilssonemma/eslint-plugin-prettierx#master",
+		"prettierx": "github:simonmika/prettierx#newline-before-clause",
 		"jest": "^26",
 		"ts-jest": "^26.1.0",
 		"typescript": "^3.9.5",
