@@ -1,5 +1,6 @@
 import { Content } from "./Content"
 import { Context } from "./Context"
+import { Converter } from "./Converter"
 import { Endpoint } from "./Endpoint"
 import { Function } from "./Function"
 import { Log } from "./Log"
@@ -16,6 +17,7 @@ import { schedule } from "./schedule"
 export {
 	Content,
 	Context,
+	Converter,
 	Endpoint,
 	Function,
 	Log,
