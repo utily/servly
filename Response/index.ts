@@ -60,5 +60,5 @@ export namespace Response {
 		export const to = ResponseHeader.to
 		export const from = ResponseHeader.from
 	}
-	export type Parser = (headers: ResponseHeader, body: any) => string | Record<string, unknown> | undefined
+	export type Parser = (headers: ResponseHeader, body: unknown) => unknown
 }

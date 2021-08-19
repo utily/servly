@@ -56,5 +56,8 @@ export namespace Request {
 		export const is = RequestMethod.is
 	}
 	export const parse = parseBody
-	export type Parser = (headers: Request.Header, body: any) => string | Record<string, unknown> | undefined
+	export type Parser = (
+		headers: Request.Header,
+		body: string | Record<string, unknown> | Array<unknown> | undefined
+	) => string | Record<string, unknown> | Array<unknown> | undefined
 }

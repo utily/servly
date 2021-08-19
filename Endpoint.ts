@@ -25,7 +25,7 @@ export namespace Endpoint {
 				c.log("servly.catch", "error", error)
 				output = gracely.server.unknown()
 			}
-			const result = Response.create(output)
+			const result = Response.create(output, converter?.response.body)
 			await finish()
 			return result
 		}
