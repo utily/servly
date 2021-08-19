@@ -7,8 +7,8 @@ export interface Request {
 	readonly method?: RequestMethod
 	readonly url: string
 	readonly baseUrl: string
-	readonly query: { [key: string]: string }
-	readonly parameter: { [key: string]: string }
+	readonly query: Record<string, string | undefined>
+	readonly parameter: Record<string, string | undefined>
 	readonly remote?: string
 	readonly header: RequestHeader
 	readonly body?: Promise<any>
