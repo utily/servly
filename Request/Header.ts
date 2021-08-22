@@ -213,7 +213,7 @@ class HeaderDefault implements Header {
 	get saveData() {
 		return this.get("Save-Data")
 	}
-	constructor(private readonly data: { [header: string]: string }) {}
+	constructor(private readonly data: Record<string, string | undefined>) {}
 	private getAll(field: string): undefined | string[] {
 		const result = this.get(field)
 		return (result && result.split(",").map(v => v.trim())) || undefined
@@ -290,7 +290,7 @@ export namespace Header {
 			(value.saveData == undefined || typeof value.saveData == "string")
 		)
 	}
-	export function from(data: { [field: string]: string }): Header {
+	export function from(data: Record<string, string | undefined>): Header {
 		return new HeaderDefault(data)
 	}
 	function set(name: string, value: undefined | string | string[], result: { [field: string]: string }): void {
