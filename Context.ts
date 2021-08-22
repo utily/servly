@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+import { fetch } from "./fetch"
 import { Log } from "./Log"
 import { Meta } from "./Meta"
-import { fetch } from "./fetch"
 
 export interface Context {
 	readonly id: string

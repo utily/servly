@@ -7,8 +7,8 @@ export interface Request {
 	readonly method?: RequestMethod
 	readonly url: string
 	readonly baseUrl: string
-	readonly query: { [key: string]: string }
-	readonly parameter: { [key: string]: string }
+	readonly query: Record<string, string | undefined>
+	readonly parameter: Record<string, string | undefined>
 	readonly remote?: string
 	readonly header: RequestHeader
 	readonly body?: Promise<any>
@@ -17,7 +17,10 @@ export interface Request {
 
 export namespace Request {
 	// eslint-disable-next-line @typescript-eslint/ban-types
-	export function create(request: Omit<Partial<Request>, "body"> & { body?: Promise<any> | object | any }): Request {
+	export function create(
+		request: Omit<Partial<Request>, "body"> & { body?: Promise<any> | Record<string, unknown> | any },
+		converter?: Parser
+	): Request {
 		let result: Request = {
 			url: "",
 			baseUrl: getBaseUrl(request.url) || "",
@@ -29,7 +32,15 @@ export namespace Request {
 		}
 		if (result.raw) {
 			if (!result.body)
-				result = { ...result, body: result.raw.then(data => parse(result.header, data)) }
+				result = {
+					...result,
+					body: result.raw.then(data => {
+						let body = parse(result.header, data)
+						if (converter)
+							body = converter(result.header, body)
+						return body
+					}),
+				}
 		} else if (result.body && !result.body.then)
 			result = { ...result, body: Promise.resolve(result.body) }
 		return result
@@ -45,4 +56,8 @@ export namespace Request {
 		export const is = RequestMethod.is
 	}
 	export const parse = parseBody
+	export type Parser = (
+		headers: Request.Header,
+		body: string | Record<string, unknown> | Array<unknown> | undefined
+	) => string | Record<string, unknown> | Array<unknown> | undefined
 }
