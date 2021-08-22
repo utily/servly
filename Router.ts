@@ -24,14 +24,20 @@ export class Router {
 				} else
 					allowedMethods = allowedMethods.concat(...route[0].methods)
 		}
-		return result ?? (
-			allowedMethods.length == 0 ? gracely.client.notFound() :
-			request.method == "OPTIONS" ? { ...gracely.success.noContent(), header: {
-				accessControlAllowOrigin: this.origin,
-				accessControlAllowMethods: allowedMethods,
-				accessControlAllowHeaders: "Content-Type",
-			}} :
-			gracely.client.methodNotAllowed(...allowedMethods)
+		return (
+			result ??
+			(allowedMethods.length == 0
+				? gracely.client.notFound()
+				: request.method == "OPTIONS"
+				? {
+						...gracely.success.noContent(),
+						header: {
+							accessControlAllowOrigin: this.origin,
+							accessControlAllowMethods: allowedMethods,
+							accessControlAllowHeaders: "Content-Type",
+						},
+				  }
+				: gracely.client.methodNotAllowed(...allowedMethods))
 		)
 	}
 }
