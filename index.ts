@@ -1,5 +1,6 @@
 import { Content } from "./Content"
 import { Context } from "./Context"
+import { Converter } from "./Converter"
 import { Endpoint } from "./Endpoint"
 import { fetch } from "./fetch"
 import { Function } from "./Function"
@@ -17,6 +18,7 @@ const create = Response.create
 export {
 	Content,
 	Context,
+	Converter,
 	Endpoint,
 	Function,
 	Log,
