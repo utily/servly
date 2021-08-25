@@ -1,6 +1,6 @@
 {
 	"name": "servly",
-	"version": "0.2.8",
+	"version": "0.2.9",
 	"description": "Tool to create cloud independent serverless backends. ",
 	"author": "PayFunc",
 	"license": "MIT",
