@@ -15,11 +15,7 @@ export namespace Response {
 			(value.header == undefined || typeof value.header == "object")
 		)
 	}
-	export function create(
-		response: Response | any,
-		requestHeader?: Request.Header,
-		converter?: Parser
-	): Required<Response> {
+	export function create(response: Response | any, request?: Request, converter?: Parser): Required<Response> {
 		if (
 			typeof response.status == "number" &&
 			typeof response.response == "object" &&
@@ -54,8 +50,8 @@ export namespace Response {
 							: "text/plain; charset=utf-8"
 					break
 			}
-		if (requestHeader && converter)
-			result.body = converter(requestHeader, result.body)
+		if (request && converter)
+			result.body = converter(request, result.body)
 		return result
 	}
 	export type Header = ResponseHeader
@@ -64,5 +60,5 @@ export namespace Response {
 		export const to = ResponseHeader.to
 		export const from = ResponseHeader.from
 	}
-	export type Parser = (requestHeader: Request.Header, responseBody: unknown) => unknown
+	export type Parser = (request: Request, responseBody: unknown) => unknown
 }

@@ -37,7 +37,7 @@ export namespace Request {
 					body: result.raw.then(data => {
 						let body = parse(result.header, data)
 						if (converter)
-							body = converter(result.header, body)
+							body = converter(result, body)
 						return body
 					}),
 				}
@@ -57,7 +57,7 @@ export namespace Request {
 	}
 	export const parse = parseBody
 	export type Parser = (
-		headers: Request.Header,
+		request: Request,
 		body: string | Record<string, unknown> | Array<unknown> | undefined
 	) => string | Record<string, unknown> | Array<unknown> | undefined
 }
