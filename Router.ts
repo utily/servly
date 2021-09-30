@@ -37,7 +37,7 @@ export class Router {
 							accessControlAllowHeaders: "Content-Type",
 						},
 				  }
-				: gracely.client.methodNotAllowed(...allowedMethods))
+				: gracely.client.methodNotAllowed(allowedMethods))
 		)
 	}
 }
