@@ -14,7 +14,7 @@ export interface Context {
 	readonly callback: (request: fetch.Request) => void
 }
 export namespace Context {
-	export function create(context?: Partial<Context>): Context {
+	export function create(context: Partial<Context> = {}): Context {
 		return Object.assign(context, {
 			id: "",
 			function: {
