@@ -15,7 +15,7 @@ export interface Context {
 }
 export namespace Context {
 	export function create(context?: Partial<Context>): Context {
-		return Object.assign(context, {
+		return Object.assign(context ?? {}, {
 			id: "",
 			function: {
 				name: "",

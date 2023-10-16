@@ -1,20 +1,13 @@
 import * as servly from "../index"
 
 describe("servly.fetch", () => {
-	it("ptsv2", async () =>
-		expect(await servly.fetch({ url: "https://ptsv2.com/t/servly/post" })).toEqual({
+	it("fetch test", async () => {
+		const response = await servly.fetch({ url: "http://www.example.com" })
+		expect(response).toEqual({
 			status: 200,
-			header: {
-				accessControlAllowOrigin: "*",
-				cacheControl: "private",
-				connection: "close",
-				contentEncoding: "gzip",
-				contentType: "text/plain; charset=utf-8",
-				date: expect.stringContaining("GMT"),
-				server: "Google Frontend",
-				transferEncoding: "chunked",
-				vary: "Accept-Encoding",
-			},
-			body: "Thank you for this dump. I hope you have a lovely day!",
-		}))
+			header: expect.any(Object),
+			body: expect.stringContaining("<html>"),
+		})
+		expect(response.header?.contentType).toEqual("text/html; charset=UTF-8")
+	})
 })
