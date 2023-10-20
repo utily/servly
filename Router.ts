@@ -8,18 +8,19 @@ import { Route } from "./Route"
 export class Router {
 	private readonly routes: [Route, Endpoint][] = []
 	origin: string[] = ["*"]
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	constructor() {}
 	add(method: Request.Method | Request.Method[], pattern: string, endpoint: Endpoint) {
 		this.routes.push([Route.create(method, pattern), endpoint])
 	}
-	async handle(context: Context, request: Request): Promise<Response> {
+	async handle(request: Request, context: Context): Promise<Response> {
 		let result: Response | undefined
 		let allowedMethods: Request.Method[] = []
 		for (const route of this.routes) {
 			const r = route[0].match(request)
 			if (r)
 				if (route[0].methods.some(m => m == request.method)) {
-					result = await route[1](context, r)
+					result = await route[1](r, context)
 					break
 				} else
 					allowedMethods = allowedMethods.concat(...route[0].methods)

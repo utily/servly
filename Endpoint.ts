@@ -6,21 +6,21 @@ import { Response } from "./Response"
 import { finish } from "./schedule"
 
 export type Endpoint = (
-	context: Partial<Context>,
-	request: Omit<Partial<Request>, "body"> & { body?: Promise<any> | Record<string, unknown> | any }
+	request: Omit<Partial<Request>, "body"> & { body?: Promise<any> | Record<string, unknown> | any },
+	context: Partial<Context>
 ) => Promise<Required<Response>>
 
 export namespace Endpoint {
 	export function create(
-		endpoint: (context: Context, request: Request) => Promise<Response | any>,
+		endpoint: (request: Request, context?: Context) => Promise<Response | any>,
 		converter?: Converter
 	): Endpoint {
-		return async (context, request) => {
+		return async (request, context) => {
 			const c = Context.create(context)
 			const input = Request.create(request, converter?.request.body)
 			let output: Response | any
 			try {
-				output = await endpoint(c, input)
+				output = await endpoint(input, c)
 			} catch (error) {
 				c.log("servly.catch", "error", error)
 				output = gracely.server.unknown()
@@ -32,8 +32,8 @@ export namespace Endpoint {
 	}
 	export function customizeCreate(
 		converter: Converter
-	): (endpoint: (context: Context, request: Request) => Promise<Response | any>) => Endpoint {
-		return (endpoint: (context: Context, request: Request) => Promise<Response | any>) =>
+	): (endpoint: (request: Request, context: Context) => Promise<Response | any>) => Endpoint {
+		return (endpoint: (request: Request, context: Context) => Promise<Response | any>) =>
 			Endpoint.create(endpoint, converter)
 	}
 }
