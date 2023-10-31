@@ -78,7 +78,7 @@
 	},
 	"dependencies": {
 		"gracely": "2.0.6",
-		"isoly": "2.0.30",
+		"isoly": "2.0.32",
 		"isomorphic-fetch": "^3.0.0"
 	},
 	"devDependencies": {
