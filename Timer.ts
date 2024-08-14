@@ -10,7 +10,7 @@ export namespace Timer {
 			try {
 				await handler(c)
 			} catch (error) {
-				c.log("servly.catch", "error", { error })
+				c.log("servly.catch", "error", { error: error?.message ?? error })
 			}
 			await finish()
 		}
